@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mokshitha ❤</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #ffc0cb;
+        overflow-x: hidden;
+        position: relative;
+    }
+    .floating {
+        position: absolute;
+        font-size: 24px;
+        animation: float 8s infinite linear;
+        opacity: 0.7;
+        pointer-events: none;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        10% { opacity: 1; }
+        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+    .container {
+        text-align: center;
+        padding: 30px;
+        color: #fff;
+    }
+    .intro {
+        max-width: 800px;
+        margin: auto;
+        background: rgba(255, 105, 180, 0.8);
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 1.1em;
+        line-height: 1.6;
+    }
+    button {
+        background-color: #ff69b4;
+        color: white;
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    .proposal {
+        display: none;
+        padding: 30px;
+    }
+    textarea {
+        width: 80%;
+        height: 100px;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        resize: none;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container" id="page1">
+    <div class="intro">
+        Hello madam, I can't tell whatever I want in the chats because your dad will see it. Here I can tell what I've always wanted to say to you in person. From the start of 2023, I thought you were just another person who hated me. But now I’ve realised how important you’ve become to me—that I’m ready to do anything just to keep you in my life...<br><br>
+        (Full text you gave will be here)
+    </div>
+    <button onclick="goToProposal()">Can I ask you something?</button>
+</div>
+
+<div class="container proposal" id="page2">
+    <h2>Do I have the fortune to have you with me for my entire life as mine?? 💍</h2>
+    <button onclick="submitResponse('Yes')">Yes 💖</button>
+    <button onclick="submitResponse('No')">No 😔</button>
+    <br>
+    <textarea id="message" placeholder="Write what you feel here..."></textarea>
+</div>
+
+<script>
+    // Floating elements
+    const symbols = ["💖","💗","💓","💕","💞","💘","💝","👑","I ❤ U"];
+    function createFloating(dense=false) {
+        const count = dense ? 50 : 25;
+        for (let i = 0; i < count; i++) {
+            let span = document.createElement("span");
+            span.classList.add("floating");
+            span.innerText = symbols[Math.floor(Math.random()*symbols.length)];
+            span.style.left = Math.random()*100 + "vw";
+            span.style.animationDuration = (Math.random()*5 + 5) + "s";
+            span.style.fontSize = (Math.random()*20 + 20) + "px";
+            document.body.appendChild(span);
+        }
+    }
+    createFloating();
+
+    function goToProposal() {
+        document.getElementById("page1").style.display = "none";
+        document.getElementById("page2").style.display = "block";
+        createFloating(true);
+    }
+
+    function submitResponse(choice) {
+        const message = document.getElementById("message").value;
+        fetch("YOUR_WEB_APP_URL_HERE", {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ choice, message })
+        });
+        alert("Your response has been sent ❤");
+    }
+</script>
+
+</body>
+</html>
